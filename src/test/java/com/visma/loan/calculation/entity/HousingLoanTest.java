@@ -33,7 +33,7 @@ public class HousingLoanTest {
     public void testNegativeLoanTerm() {
         int term = -5;
         BigDecimal amount = new BigDecimal("100000");
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             HousingLoan housingLoan = new HousingLoan(term, amount);
             housingLoan.calculatePayment(housingLoan);
         }, "Loan term must be positive.");

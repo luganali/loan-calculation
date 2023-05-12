@@ -36,7 +36,7 @@ public class SpendingLoanTest {
             HousingLoan housingLoan = new HousingLoan(term, amount);
             housingLoan.calculatePayment(housingLoan);
         }, "Loan term must be positive.");
-         Assertions.assertTrue(thrown.getMessage().contentEquals("Loan term must be positive."));
+        Assertions.assertTrue(thrown.getMessage().contentEquals("Loan term must be positive."));
     }
 
     @Test
