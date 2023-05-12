@@ -1,21 +1,28 @@
-Loan Calculation Application
+# Loan Calculation Application
 
 This application is using for different types of  Loan Calculations.
 
-Run the spring boot application directly with Application class.
+Run the spring boot application directly with Application class .
 
-With using Postman, you can use this URL; localhost:8081/loan/calculateLoan
+"com.visma.loan.calculation.LoanCalculationApplication"
 
-Here is the request example;
+!There is two ways to test application : 
 
-{ "type":"HOUSING_LOAN", "term": 12, "amount": 120000 }
+> With using Postman, you can use this URL; localhost:8081/loan/calculateLoan
 
-and expected response;
 
-{ "monthlyPayment": 1021.74}
+    Here is the request example;
+    
+    {
+    "loanAmount": 120000,
+    "loanPeriodYear": 12,
+    "type": "HOUSING_LOAN"
+    }
+    
+    and expected response;
+    
+    { "monthlyPayment": 1021.74}
 
-Or 
-
-You can use Swagger interface to send your request :
+> You can use Swagger interface to send your request :
 
 http://localhost:8081/swagger-ui/
