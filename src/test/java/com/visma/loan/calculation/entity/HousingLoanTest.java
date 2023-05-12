@@ -31,20 +31,20 @@ public class HousingLoanTest {
 
     @Test
     public void testNegativeLoanTerm() {
-        int term = -5;
+        int period = -5;
         BigDecimal amount = new BigDecimal("100000");
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            HousingLoan housingLoan = new HousingLoan(term, amount);
+            HousingLoan housingLoan = new HousingLoan(period, amount);
             housingLoan.calculatePayment(housingLoan);
-        }, "Loan term must be positive.");
+        }, "Loan period must be positive.");
     }
 
     @Test
     public void testZeroLoanTerm() {
-        int term = 0;
+        int period = 0;
         BigDecimal amount = new BigDecimal("100000");
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            HousingLoan housingLoan = new HousingLoan(term, amount);
+            HousingLoan housingLoan = new HousingLoan(period, amount);
             housingLoan.calculatePayment(housingLoan);
         }, "Loan term cannot be zero.");
     }

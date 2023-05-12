@@ -2,11 +2,9 @@ Loan Calculation Application
 
 This application is using for different types of  Loan Calculations.
 
-There are two ways for running the application:
+Run the spring boot application directly with Application class.
 
-Run the spring boot application directly with Application class
-
-With using Postman, you can use this URL; localhost:8081/loan/calculateMonthlyPayment
+With using Postman, you can use this URL; localhost:8081/loan/calculateLoan
 
 Here is the request example;
 

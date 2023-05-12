@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/loan")
 public class LoanController {
-    @PostMapping("/calculateMonthlyPayment")
-    public CalculateResponse calculate(@RequestBody Loan loan) {
+    @PostMapping("/calculateLoan")
+    public CalculateResponse calculateLoan(@RequestBody Loan loan) {
             return loan.calculatePayment(loan);
     }
 }

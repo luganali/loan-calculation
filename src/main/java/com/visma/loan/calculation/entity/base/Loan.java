@@ -5,7 +5,7 @@ import com.visma.loan.calculation.entity.SpendingLoan;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.visma.loan.calculation.response.CalculateResponse;
-import lombok.AllArgsConstructor;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -18,20 +18,20 @@ import java.math.BigDecimal;
 
 })
 
-//@AllArgsConstructor
 @Getter
 public abstract class Loan<T extends Loan> {
     private String type;
 
+    @Parameter(hidden = true)
     private BigDecimal interestRate;
 
-    private int term;
+    private int loanPeriodYear;
 
     private BigDecimal loanAmount;
 
-    public Loan(String type, BigDecimal interestRate, int term, BigDecimal loanAmount) {
-        if (term <= 0) {
-            throw new IllegalArgumentException("Loan term must be positive.");
+    public Loan(String type, BigDecimal interestRate, int loanPeriodYear, BigDecimal loanAmount) {
+        if (loanPeriodYear <= 0) {
+            throw new IllegalArgumentException("Loan Period  must be positive.");
         }
         if (loanAmount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Loan amount must be positive.");
@@ -39,7 +39,7 @@ public abstract class Loan<T extends Loan> {
 
         this.type = type;
         this.interestRate = interestRate;
-        this.term = term;
+        this.loanPeriodYear = loanPeriodYear;
         this.loanAmount = loanAmount;
     }
     public abstract CalculateResponse calculatePayment(T loan);

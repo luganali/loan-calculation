@@ -9,14 +9,14 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 
 public class SpendingLoan  extends Loan<SpendingLoan> {
-    public SpendingLoan( int term, BigDecimal amount) {
-        super(Type.SPENDING_LOAN, BigDecimal.valueOf(0.022), term, amount);
+    public SpendingLoan( int loanPeriodYear, BigDecimal amount) {
+        super(Type.SPENDING_LOAN, BigDecimal.valueOf(0.022), loanPeriodYear, amount);
     }
 
     @Override
     public CalculateResponse calculatePayment(SpendingLoan loan) {
         BigDecimal monthlyInterestRate = loan.getInterestRate().divide(BigDecimal.valueOf(12), MathContext.DECIMAL128);
-        int numberOfPayments = loan.getTerm() * 12;
+        int numberOfPayments = loan.getLoanPeriodYear() * 12;
         BigDecimal numerator = loan.getLoanAmount().multiply(monthlyInterestRate).multiply(BigDecimal.ONE.add(monthlyInterestRate).pow(numberOfPayments));
         BigDecimal denominator = BigDecimal.ONE.add(monthlyInterestRate).pow(numberOfPayments).subtract(BigDecimal.ONE);
         BigDecimal monthlyPayment = numerator.divide(denominator, MathContext.DECIMAL128).setScale(2, RoundingMode.HALF_UP);

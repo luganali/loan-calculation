@@ -34,7 +34,7 @@ public class LoanControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         String loanJson = objectMapper.writeValueAsString(loan);
 
-        MvcResult result = mockMvc.perform(post("/loan/calculate")
+        MvcResult result = mockMvc.perform(post("/loan/calculateLoan")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(loanJson))
                 .andExpect(status().isOk())
@@ -43,5 +43,20 @@ public class LoanControllerTest {
         String responseJson = result.getResponse().getContentAsString();
         CalculateResponse calculateResponse = objectMapper.readValue(responseJson, CalculateResponse.class);
         assertEquals(new BigDecimal("98.89"), calculateResponse.getMonthlyPayment());
+    }
+    @Test
+    public void testCalculateLoanPaymentException400() throws Exception {
+        HousingLoan loan = new HousingLoan(10,BigDecimal.valueOf(10000));
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String loanJson = objectMapper.writeValueAsString(loan);
+        loanJson = loanJson.replace("loanPeriodYear","term");
+
+        MvcResult result = mockMvc.perform(post("/loan/calculateLoan")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(loanJson))
+                .andExpect(status().isBadRequest())
+                .andReturn();
+
     }
 }
