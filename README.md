@@ -6,14 +6,7 @@ There are two ways for running the application:
 
 Run the spring boot application directly with Application class
 
-Use docker with following instruction
-
-a) docker build --tag=loan-calculator:latest .
-
-b) docker run -it -p 8081:8081 loan-calculator:latest
-
-With using Postman, you can use this URL; localhost:8081/loan/calculate
-
+With using Postman, you can use this URL; localhost:8081/loan/calculateMonthlyPayment
 
 Here is the request example;
 
