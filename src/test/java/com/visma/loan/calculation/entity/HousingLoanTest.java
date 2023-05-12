@@ -11,9 +11,9 @@ public class HousingLoanTest {
 
     @Test
     public void testValidMonthlyPayment() {
-        int term = 20;
-        BigDecimal amount = new BigDecimal("200000");
-        BigDecimal expectedMonthlyPayment = new BigDecimal("1159.92");
+        int term = 12;
+        BigDecimal amount = new BigDecimal("120000");
+        BigDecimal expectedMonthlyPayment = new BigDecimal("1021.74");
         HousingLoan housingLoan = new HousingLoan(term, amount);
         CalculateResponse calculateResponse = housingLoan.calculatePayment(housingLoan);
         Assertions.assertEquals(expectedMonthlyPayment, calculateResponse.getMonthlyPayment());
